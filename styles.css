@@ -30,12 +30,9 @@
 }
 
 .box {
-  height: 200px;
+  height: 300px;
   width: 200px;
-}
-
-.box:nth-child(n + 6) {
-  display: none;
+  background-color: gray;
 }
 
 img {
@@ -78,12 +75,15 @@ button {
 }
 
 #facts {
-  height: 100vh;
+  height: 80vh;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
 }
 
 .factBox {
   padding: 20px;
+  background-color: gray;
 }

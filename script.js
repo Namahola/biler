@@ -84,49 +84,31 @@ let cars = [
 
 let root = document.getElementById("root");
 
-// const addCar = () => {
-//   let name = document.getElementById("1").value;
-//   let year = document.getElementById("2").value;
-//   let color = document.getElementById("3").value;
-//   let topspeed = document.getElementById("4").value;
-//   let horsepower = document.getElementById("5").value;
-//   let range = document.getElementById("6").value;
-//   let car = {
-//     name: name,
-//     year: year,
-//     color: color,
-//     topspeed: topspeed,
-//     horsepower: horsepower,
-//     range: range,
-//   };
-//   cars.push(car);
-//   showCars();
-// };
+var box = document.getElementsByClassName("box");
 
 const showCars = () => {
   root.innerHTML = "";
-  for (let i = 0; i < cars.length; i++) {
-    root.innerHTML += ` <div class="box"> <ul> <li> Name: ${cars[i].name} </li> <li> Year: ${cars[i].year} </li> <li> Color: ${cars[i].color} </li> <li> Topspeed: ${cars[i].topspeed} </li> <li> Horsepower: ${cars[i].horsepower} </li> <li> Range: ${cars[i].range} </li> <img src=${cars[i].url}> </ul> <button onclick="removeCar(${i})">Remove</button </div>`;
+  for (let i = 0; i < 5; i++) {
+    root.innerHTML += `<div class="box"> <ul> <li> Name: ${cars[i].name} </li> <li> Year: ${cars[i].year} </li> <li> Color: ${cars[i].color} </li> <li> Topspeed: ${cars[i].topspeed} </li> <li> Horsepower: ${cars[i].horsepower} </li> <li> Range: ${cars[i].range} </li> <img src=${cars[i].url}> </ul> <button onclick="removeCar(${i})">Remove</button </div>`;
   }
 };
 
 const removeCar = (indexToRemove) => {
-  cars.splice(indexToRemove, 1);
-
-  showCars();
+  box[indexToRemove].remove();
 };
 
 const addCar = () => {
-  let box = document.getElementsByClassName("box");
-  for (let i = 0; i < box.length; i++) {
-    var element = document.getElementsByClassName("box")[i];
-    var style = getComputedStyle(element);
-    console.log(style.display);
-    if ((element.style.display = "none")) {
-      element.style.display = "block";
-      i++;
-    }
-  }
+  root.innerHTML += `<div class="box"> <ul> <li> Name: ${
+    cars[box.length].name
+  } </li> <li> Year: ${cars[box.length].year} </li> <li> Color: ${
+    cars[box.length].color
+  } </li> <li> Topspeed: ${cars[box.length].topspeed} </li> <li> Horsepower: ${
+    cars[box.length].horsepower
+  } </li> <li> Range: ${cars[box.length].range} </li> <img src=${
+    cars[box.length].url
+  }> </ul> <button onclick="removeCar(${box.length})">Remove</button </div>`;
 };
 
 showCars();
+
+// I showCars viser den de første 5 biler, fordi i < 5. Og når man trykker på addCar, så tilføjer den et nyt 'lol' element, så længe der er nogle at tage af dvs. så længe værdien ikke overstiger lol.length
