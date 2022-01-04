@@ -1,0 +1,89 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#root {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+#newCars {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+
+.name {
+  background-color: rgb(110, 110, 110);
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: center;
+  padding: 5px;
+}
+
+.box {
+  height: 200px;
+  width: 200px;
+}
+
+.box:nth-child(n + 6) {
+  display: none;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.btn {
+  width: 100px;
+  height: 40px;
+}
+
+.nav-ul {
+  display: flex;
+  padding: 20px;
+}
+
+.nav-ul-li {
+  padding: 20px;
+}
+
+.nav-a {
+  text-decoration: none;
+  color: black;
+  font-size: large;
+}
+
+.nav-a:hover {
+  color: darkorange;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-size: medium;
+}
+
+#facts {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.factBox {
+  padding: 20px;
+}
