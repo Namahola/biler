@@ -1,4 +1,4 @@
-let cars = [
+const hiddenCars = [
   {
     name: "Audi e-tron",
     year: 2021,
@@ -82,33 +82,101 @@ let cars = [
   },
 ];
 
-let root = document.getElementById("root");
+const visibleCars = [];
 
-var box = document.getElementsByClassName("box");
+const root = document.getElementById("root");
 
-const showCars = () => {
-  root.innerHTML = "";
-  for (let i = 0; i < 5; i++) {
-    root.innerHTML += `<div class="box"> <ul> <li> Name: ${cars[i].name} </li> <li> Year: ${cars[i].year} </li> <li> Color: ${cars[i].color} </li> <li> Topspeed: ${cars[i].topspeed} </li> <li> Horsepower: ${cars[i].horsepower} </li> <li> Range: ${cars[i].range} </li> <img src=${cars[i].url}> </ul> <button onclick="removeCar(${i})">Remove</button </div>`;
+const showCar = () => {
+  if (hiddenCars.length > 0) {
+    // get a car from hiddenCars and move it to visibleCars
+    const car = hiddenCars.shift();
+    visibleCars.push(car);
+    renderCar(car);
   }
 };
 
-const removeCar = (indexToRemove) => {
-  box[indexToRemove].remove();
+const renderCar = (car) => {
+  let box = document.createElement("div");
+  box.className = "box";
+
+  let list = document.createElement("ul");
+  box.appendChild(list);
+
+  let name = document.createElement("li");
+  name.innerText = car.name;
+  box.appendChild(name);
+
+  let year = document.createElement("li");
+  year.innerText = car.year;
+  box.appendChild(year);
+
+  let color = document.createElement("li");
+  color.innerText = car.color;
+  box.appendChild(color);
+
+  let topspeed = document.createElement("li");
+  topspeed.innerText = car.topspeed;
+  box.appendChild(topspeed);
+
+  let horsepower = document.createElement("li");
+  horsepower.innerText = car.horsepower;
+  box.appendChild(horsepower);
+
+  let range = document.createElement("li");
+  range.innerText = car.range;
+  box.appendChild(range);
+
+  let img = document.createElement("img");
+  img.src = car.url;
+  img.className = "img";
+  box.appendChild(img);
+
+  let btn = document.createElement("button");
+  btn.innerText = "Remove";
+  btn.onclick = () => hideCar(car);
+  box.appendChild(btn);
+
+  root.appendChild(box);
 };
 
-const addCar = () => {
-  root.innerHTML += `<div class="box"> <ul> <li> Name: ${
-    cars[box.length].name
-  } </li> <li> Year: ${cars[box.length].year} </li> <li> Color: ${
-    cars[box.length].color
-  } </li> <li> Topspeed: ${cars[box.length].topspeed} </li> <li> Horsepower: ${
-    cars[box.length].horsepower
-  } </li> <li> Range: ${cars[box.length].range} </li> <img src=${
-    cars[box.length].url
-  }> </ul> <button onclick="removeCar(${box.length})">Remove</button </div>`;
+const hideCar = (car) => {
+  const index = visibleCars.indexOf(car);
+  visibleCars.splice(index, 1);
+  hiddenCars.push(car);
+
+  const box = root.children[index];
+  root.removeChild(box);
 };
 
-showCars();
+for (let i = 0; i < 5; i++) {
+  showCar();
+}
+
+// var box = document.getElementsByClassName("box");
+
+// const showCars = () => {
+//   root.innerHTML = "";
+//   for (let i = 0; i < 5; i++) {
+//     root.innerHTML += `<div class="box"> <ul> <li> Name: ${cars[i].name} </li> <li> Year: ${cars[i].year} </li> <li> Color: ${cars[i].color} </li> <li> Topspeed: ${cars[i].topspeed} </li> <li> Horsepower: ${cars[i].horsepower} </li> <li> Range: ${cars[i].range} </li> <img src=${cars[i].url}> </ul> <button onclick="removeCar(${i})">Remove</button </div>`;
+//   }
+// };
+
+// const removeCar = (indexToRemove) => {
+//   box[indexToRemove].remove();
+// };
+
+// const addCar = () => {
+//   root.innerHTML += `<div class="box"> <ul> <li> Name: ${
+//     cars[box.length].name
+//   } </li> <li> Year: ${cars[box.length].year} </li> <li> Color: ${
+//     cars[box.length].color
+//   } </li> <li> Topspeed: ${cars[box.length].topspeed} </li> <li> Horsepower: ${
+//     cars[box.length].horsepower
+//   } </li> <li> Range: ${cars[box.length].range} </li> <img src=${
+//     cars[box.length].url
+//   }> </ul> <button onclick="removeCar(${box.length})">Remove</button </div>`;
+// };
+
+// showCars();
 
 // I showCars viser den de første 5 biler, fordi i < 5. Og når man trykker på addCar, så tilføjer den et nyt 'lol' element, så længe der er nogle at tage af dvs. så længe værdien ikke overstiger lol.length
